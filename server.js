@@ -3,9 +3,11 @@ var app = express();
 var path = require('path');
 var httpProxy = require('http-proxy');
 
+var opn = require('opn')
 
-let child_process = require('child_process'),
-	path_url = 'index.html';
+let open_port = 8003,
+	path_url = 'index.html',
+	open_url = `http://localhost:${open_port}`;
 
 var proxy = new httpProxy.createProxyServer({
 	target: {
@@ -36,14 +38,7 @@ app.get('/', function(req, res) {
 });
 
 
-app.listen(process.env.PORT || 8003);
-console.log('i am up at 8003');
+app.listen(process.env.PORT || open_port);
+console.log(`i am up at ${open_port}`);
 
-if (process.platform == 'wind32') {
-	cmd = 'start "%ProgramFiles%\Internet Explorer\iexplore.exe"';
-} else if (process.platform == 'linux') {
-	cmd = 'xdg-open';
-} else if (process.platform == 'darwin') {
-	cmd = 'open';
-}
-child_process.exec(`${cmd} "${path_url}"`);
+opn(open_url)
