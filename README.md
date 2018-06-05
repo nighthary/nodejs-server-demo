@@ -12,6 +12,9 @@ npm install
 #run
 npm run dev				
 
+#run route
+npm run dev:route
+
 ```
 
 ### 2. 自定义路径
@@ -20,4 +23,4 @@ npm run dev
 
 ### 3. 其他
 
->每次修改路径都需要重新启动nodejs
+>引入了supervisor模块，使得每次修改内容无需重新启动，自动重新部署
